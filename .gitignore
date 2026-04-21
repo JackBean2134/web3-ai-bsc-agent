@@ -1,0 +1,9 @@
+.env
+vendor/
+.idea/
+.vscode/
+*.exe
+*.log
+build/
+dist/
+web3-ai-bsc
