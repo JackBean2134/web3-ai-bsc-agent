@@ -3,8 +3,8 @@ package api
 import (
 	"log"
 	"net/http"
-	"web3-ai-bsc-agent/internal/ai"
-	"web3-ai-bsc-agent/internal/bsc"
+	"web3-ai-agent/internal/ai"
+	"web3-ai-agent/internal/bsc"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"

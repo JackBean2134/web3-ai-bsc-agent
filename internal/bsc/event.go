@@ -5,7 +5,7 @@ import (
 	"log"
 	"math/big"
 	"time"
-	"web3-ai-bsc-agent/internal/ai"
+	"web3-ai-agent/internal/ai"
 
 	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/common"

@@ -27,7 +27,7 @@ func GetERC20Info(client *ethclient.Client, contract string) (name, symbol strin
 	if err != nil {
 		return "", "", 0, err
 	}
-	err = erc20ABI.Methods["name"].Outputs.Unpack(&name, resName)
+	_, err = erc20ABI.Methods["name"].Outputs.Unpack(resName)
 	if err != nil {
 		return "", "", 0, err
 	}
@@ -37,7 +37,7 @@ func GetERC20Info(client *ethclient.Client, contract string) (name, symbol strin
 	if err != nil {
 		return "", "", 0, err
 	}
-	err = erc20ABI.Methods["symbol"].Outputs.Unpack(&symbol, resSymbol)
+	_, err = erc20ABI.Methods["symbol"].Outputs.Unpack(resSymbol)
 	if err != nil {
 		return "", "", 0, err
 	}
@@ -47,7 +47,7 @@ func GetERC20Info(client *ethclient.Client, contract string) (name, symbol strin
 	if err != nil {
 		return "", "", 0, err
 	}
-	err = erc20ABI.Methods["decimals"].Outputs.Unpack(&decimals, resDec)
+	_, err = erc20ABI.Methods["decimals"].Outputs.Unpack(resDec)
 	if err != nil {
 		return "", "", 0, err
 	}
@@ -74,7 +74,7 @@ func GetERC20Balance(client *ethclient.Client, contract, addr string) (*big.Int,
 	}
 
 	var balance *big.Int
-	err = erc20ABI.Methods["balanceOf"].Outputs.Unpack(&balance, res)
+	_, err = erc20ABI.Methods["balanceOf"].Outputs.Unpack(res)
 	if err != nil {
 		return nil, err
 	}

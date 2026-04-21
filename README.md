@@ -2,71 +2,322 @@
 
 <div align="center">
 
+[![English](https://img.shields.io/badge/English-README-blue)](README.md)
+[![中文](https://img.shields.io/badge/中文-README-red)](README.zh-CN.md)
+
 ![Go](https://img.shields.io/badge/Go-1.22+-blue.svg)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
 ![Docker](https://img.shields.io/badge/Docker-Supported-orange.svg)
 ![Web3](https://img.shields.io/badge/Web3-Ethereum-purple.svg)
 
-**一个生产级的 Web3 AI 代理服务，支持 BSC 链上事件监听、ERC20 合约自动解析、AI 风险决策和自动链上操作**
+**A production-grade Web3 AI agent service with BSC chain event listening, ERC20 contract auto-parsing, AI risk decision-making, and automated on-chain operations**
 
 </div>
 
-## 📋 目录
+## 📋 Table of Contents
 
-- [项目简介](#项目简介)
-- [技术栈](#技术栈)
-- [核心功能](#核心功能)
-- [快速开始](#快速开始)
-- [API 文档](#api-文档)
-- [部署指南](#部署指南)
-- [项目结构](#项目结构)
-- [贡献指南](#贡献指南)
-- [许可证](#许可证)
+- [Introduction](#-introduction)
+- [Tech Stack](#-tech-stack)
+- [Features](#-features)
+- [Quick Start](#-quick-start)
+- [API Documentation](#-api-documentation)
+- [Deployment](#-deployment)
+- [Project Structure](#-project-structure)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-## 🎯 项目简介
+## 🎯 Introduction
 
-Web3 AI BSC Agent 是一个创新的区块链智能代理系统，结合了 Go 语言的高性能、BSC 链的低成本优势以及人工智能的决策能力。该系统能够实时监控链上活动，自动解析 ERC20 代币信息，并通过 AI 模型对交易进行风险评估和决策。
+Web3 AI BSC Agent is an innovative blockchain intelligent agent system that combines the high performance of Go language, the low-cost advantage of BSC chain, and the decision-making capability of artificial intelligence. The system can monitor on-chain activities in real-time, automatically parse ERC20 token information, and conduct risk assessment and decision-making on transactions through AI models.
 
-### 应用场景
-- 🔍 **风险监控**: 实时检测可疑交易模式
-- 🤖 **自动化交易**: 基于 AI 决策执行链上操作
-- 📊 **数据分析**: 收集和分析链上数据
-- 🛡️ **安全防护**: 识别潜在的欺诈行为
+### Use Cases
+- 🔍 **Risk Monitoring**: Real-time detection of suspicious transaction patterns
+- 🤖 **Automated Trading**: Execute on-chain operations based on AI decisions
+- 📊 **Data Analysis**: Collect and analyze on-chain data
+- 🛡️ **Security Protection**: Identify potential fraudulent behavior
 
-## 💻 技术栈
+## 💻 Tech Stack
 
-| 类别 | 技术 |
-|------|------|
-| **编程语言** | Go 1.22+ |
-| **Web 框架** | Gin Framework |
-| **区块链交互** | go-ethereum |
-| **AI 集成** | OpenAI API / Compatible LLMs |
-| **容器化** | Docker |
-| **配置管理** | Environment Variables |
+| Category | Technology |
+|----------|------------|
+| **Programming Language** | Go 1.22+ |
+| **Web Framework** | Gin Framework |
+| **Blockchain Interaction** | go-ethereum |
+| **AI Integration** | OpenAI API / Compatible LLMs |
+| **Containerization** | Docker |
+| **Configuration Management** | Environment Variables |
 
-## ✨ 核心功能
+## ✨ Features
 
-- ✅ **BSC 链连接**: 稳定可靠的 BSC 节点连接
-- ✅ **ERC20 自动解析**: 自动获取代币名称、符号、精度等信息
-- ✅ **实时事件监听**: 监听 Transfer 事件并实时响应
-- ✅ **AI 风险决策**: 基于大语言模型的交易风险评估
-- ✅ **RESTful API**: 提供完整的 HTTP API 接口
-- ✅ **Docker 部署**: 一键容器化部署
-- ✅ **错误处理**: 完善的错误处理和日志记录
-- ✅ **优雅关闭**: 支持平滑重启和关闭
+- ✅ **BSC Chain Connection**: Stable and reliable BSC node connection
+- ✅ **ERC20 Auto-Parsing**: Automatically retrieve token name, symbol, decimals, etc.
+- ✅ **Real-time Event Listening**: Listen to Transfer events and respond in real-time
+- ✅ **AI Risk Decision**: Transaction risk assessment based on large language models
+- ✅ **RESTful API**: Complete HTTP API interface
+- ✅ **Docker Deployment**: One-click containerized deployment
+- ✅ **Error Handling**: Comprehensive error handling and logging
+- ✅ **Graceful Shutdown**: Support smooth restart and shutdown
 
-## 🚀 快速开始
+## 🚀 Quick Start
 
-### 前置要求
+### Prerequisites
 
 - Go 1.22+
-- Docker (可选)
-- BSC RPC 节点访问权限
-- OpenAI API Key 或兼容的 LLM API
+- Docker (optional)
+- BSC RPC node access
+- OpenAI API Key or compatible LLM API
 
-### 本地运行
+### Local Running
 
-1. **克隆项目**
+1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/web3-ai-bsc-agent.git
+   git clone https://github.com/JackBean2134/web3-ai-bsc-agent.git
    cd web3-ai-bsc-agent
+   ```
+
+2. **Configure environment variables**
+   ```bash
+   cp env.example .env
+   # Edit .env file and fill in your configuration
+   ```
+
+3. **Install dependencies**
+   ```bash
+   go mod download
+   ```
+
+4. **Run the service**
+   ```bash
+   go run cmd/main.go
+   ```
+
+5. **Access the API**
+   ```
+   http://localhost:8080/health
+   ```
+
+### Docker Running
+
+```bash
+# Build image
+docker build -t web3-ai-bsc-agent .
+
+# Run container
+docker run -d \
+  --name web3-ai-bsc-agent \
+  -p 8080:8080 \
+  --env-file .env \
+  web3-ai-bsc-agent
+```
+
+## 📡 API Documentation
+
+### Health Check
+
+```bash
+GET /health
+```
+
+**Response Example:**
+```json
+{
+  "status": "ok",
+  "message": "Web3 AI BSC Agent is running"
+}
+```
+
+### Query BNB Balance
+
+```bash
+GET /balance/:address
+```
+
+**Parameters:**
+- `address`: Ethereum address
+
+**Response Example:**
+```json
+{
+  "address": "0x1234567890abcdef1234567890abcdef12345678",
+  "bnb_wei": "1000000000000000000"
+}
+```
+
+### Query ERC20 Token Info
+
+```bash
+GET /erc20/info?contract=0x...
+```
+
+**Parameters:**
+- `contract`: ERC20 contract address
+
+**Response Example:**
+```json
+{
+  "contract": "0x...",
+  "name": "Binance USD",
+  "symbol": "BUSD",
+  "decimals": 18
+}
+```
+
+### Query ERC20 Token Balance
+
+```bash
+GET /erc20/balance?contract=0x...&address=0x...
+```
+
+**Parameters:**
+- `contract`: ERC20 contract address
+- `address`: Wallet address
+
+**Response Example:**
+```json
+{
+  "contract": "0x...",
+  "address": "0x...",
+  "balance": "1000000000000000000"
+}
+```
+
+### AI Trading Decision
+
+```bash
+GET /ai/decision?from=0x...&to=0x...&amount=100
+```
+
+**Parameters:**
+- `from`: Sender address
+- `to`: Receiver address
+- `amount`: Transaction amount (optional)
+
+**Response Example:**
+```json
+{
+  "from": "0x...",
+  "to": "0x...",
+  "amount": "100",
+  "decision": {
+    "approve": true,
+    "risk_level": "low",
+    "reason": "Normal transaction pattern"
+  }
+}
+```
+
+## 🐳 Deployment Guide
+
+### Environment Variable Configuration
+
+Create `.env` file and configure the following variables:
+
+```env
+# BSC Node Configuration
+BSC_RPC_URL=https://bsc-dataseed.binance.org/
+
+# AI Configuration
+OPENAI_API_KEY=your-api-key
+OPENAI_MODEL=gpt-3.5-turbo
+
+# Service Configuration
+SERVER_PORT=8080
+LOG_LEVEL=info
+
+# Watched Contract Address (optional)
+WATCH_CONTRACT=0x...
+```
+
+### Production Deployment
+
+1. **Using Docker Compose**
+
+Create `docker-compose.yml`:
+```yaml
+version: '3.8'
+
+services:
+  web3-ai-agent:
+    build: .
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    restart: unless-stopped
+    volumes:
+      - ./logs:/app/logs
+```
+
+2. **Start the service**
+   ```bash
+   docker-compose up -d
+   ```
+
+3. **View logs**
+   ```bash
+   docker-compose logs -f
+   ```
+
+## 📁 Project Structure
+
+```
+web3-ai-bsc-agent/
+├── cmd/
+│   └── main.go              # Application entry point
+├── internal/
+│   ├── api/
+│   │   └── router.go        # HTTP router configuration
+│   ├── bsc/
+│   │   ├── client.go        # BSC client
+│   │   ├── erc20.go         # ERC20 contract interaction
+│   │   ├── event.go         # Event listening
+│   │   └── tx.go            # Transaction processing
+│   └── ai/
+│       └── agent.go         # AI decision agent
+├── .env                     # Environment variable configuration
+├── .gitignore
+├── Dockerfile               # Docker build file
+├── go.mod
+├── go.sum
+└── README.md
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+### Development Guidelines
+
+- Follow Go coding standards
+- Add necessary comments (use English)
+- Write unit tests
+- Update documentation
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+
+## 🙏 Acknowledgments
+
+- [go-ethereum](https://github.com/ethereum/go-ethereum) - Ethereum Go implementation
+- [Gin](https://github.com/gin-gonic/gin) - Go web framework
+- [OpenAI](https://openai.com/) - AI capability support
+
+## 📞 Contact
+
+- GitHub: [@JackBean2134](https://github.com/JackBean2134)
+- Project URL: [https://github.com/JackBean2134/web3-ai-bsc-agent](https://github.com/JackBean2134/web3-ai-bsc-agent)
+
+---
+
+<div align="center">
+
+If this project helps you, please give it a ⭐️ Star!
+
+</div>

@@ -6,8 +6,8 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
-	"web3-ai-bsc-agent/internal/api"
-	"web3-ai-bsc-agent/internal/bsc"
+	"web3-ai-agent/internal/api"
+	"web3-ai-agent/internal/bsc"
 
 	"github.com/joho/godotenv"
 )
